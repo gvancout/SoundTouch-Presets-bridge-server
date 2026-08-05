@@ -1,0 +1,15 @@
+{
+  "speakerHost": null,
+  "speakerName": "SoundTouch",
+  "playDelayMs": 1500,
+  "healthPort": 8787,
+  "bridgeName": "SoundTouch Preset Bridge",
+  "autoRecover": true,
+  "recoveryCheckSeconds": 20,
+  "recoveryCooldownSeconds": 30,
+  "presets": {
+    "1": { "name": "Station One", "url": "http://example.net/station-one.mp3" },
+    "2": { "name": "Station Two", "url": "http://example.net/station-two.mp3" },
+    "3": { "name": "Station Three", "url": "http://example.net/station-three.mp3" }
+  }
+}

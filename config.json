@@ -1,0 +1,24 @@
+{
+  "speakerHost": "192.168.0.103",
+  "speakerName": "SoundTouch 10",
+  "playDelayMs": 1500,
+  "healthPort": 8787,
+  "bridgeName": "SoundTouch Preset Bridge",
+  "autoRecover": true,
+  "recoveryCheckSeconds": 20,
+  "recoveryCooldownSeconds": 30,
+  "presets": {
+    "1": {
+      "name": "Studio Brussel",
+      "url": "http://icecast.vrtcdn.be/stubru-high.mp3"
+    },
+    "2": {
+      "name": "Vuurland",
+      "url": "http://icecast.vrtcdn.be/stubru_tgs-high.mp3"
+    },
+    "3": {
+      "name": "Radio 1",
+      "url": "http://icecast.vrtcdn.be/radio1-high.mp3"
+    }
+  }
+}
