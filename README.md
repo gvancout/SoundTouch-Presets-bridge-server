@@ -1,3 +1,5 @@
+⚠️ DISCLAIMER: This Bridge server is NOT officially maintained, endorsed, or sponsored by Bose Corporation.
+
 # SoundTouch Preset Bridge
 
 The macOS bridge listens for physical SoundTouch preset-button events over the Bose WebSocket and starts the configured stream through UPnP AVTransport. It does not use the Bose cloud or inspect network traffic.
