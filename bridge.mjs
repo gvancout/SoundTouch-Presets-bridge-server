@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readFile, rename, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { createServer } from "node:http";
@@ -104,11 +104,14 @@ function startHealthServer() {
         for await (const chunk of request) chunks.push(chunk);
         const speaker = JSON.parse(Buffer.concat(chunks).toString("utf8"));
         if (!/^[a-zA-Z0-9][a-zA-Z0-9.-]*$/.test(speaker.host ?? "")) throw new Error("Ongeldig speakeradres");
-        if (speaker.host !== host) {
+        const addressChanged = speaker.host !== host;
+        host = speaker.host;
+        config.speakerHost = host;
+        config.speakerName = speaker.name || config.speakerName;
+        await saveConfig();
+        if (addressChanged) {
           websocketGeneration += 1;
           boseWebSocket?.close();
-          host = speaker.host;
-          config.speakerName = speaker.name || config.speakerName;
           boseWebSocketConnected = false;
           console.log(`[bridge] Speakeradres ontvangen van iOS-app: ${host}`);
           connectWebSocket();
@@ -150,6 +153,12 @@ function startHealthServer() {
     ], { stdio: "ignore" });
     bonjourProcess.on("error", error => console.error(`[bridge] Bonjour kon niet starten: ${error.message}`));
   });
+}
+
+async function saveConfig() {
+  const temporaryPath = `${configPath}.tmp`;
+  await writeFile(temporaryPath, `${JSON.stringify(config, null, 2)}\n`, "utf8");
+  await rename(temporaryPath, configPath);
 }
 
 function startRecoveryMonitor() {

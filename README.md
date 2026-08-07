@@ -17,7 +17,7 @@ cd bridge
 cp config.example.json config.json
 ```
 
-Edit `config.json` to define up to six presets. `speakerHost` is optional. When it is `null`, the iOS app sends its Bonjour-discovered speaker address to `POST /speaker` when the app opens. A fixed address remains supported as a fallback.
+Edit `config.json` to define up to six presets. `speakerHost` is optional. When it is `null`, the iOS app sends its Bonjour-discovered speaker address to `POST /speaker` when the app opens. The bridge saves that last confirmed address atomically in `config.json`, so service restarts use it as a fallback. A fixed address remains supported as a fallback.
 
 `autoRecover` checks the current playback state and restarts only a stream previously started by the bridge. It does not resume standby, AirPlay, AUX, or manually paused playback.
 

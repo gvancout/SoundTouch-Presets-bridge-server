@@ -1,5 +1,5 @@
 {
-  "speakerHost": "192.168.0.103",
+  "speakerHost": "192.168.0.233",
   "speakerName": "SoundTouch 10",
   "playDelayMs": 1500,
   "healthPort": 8787,
